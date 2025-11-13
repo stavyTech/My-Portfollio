@@ -464,17 +464,44 @@ padding: 2rem 3%;
         background: var(--bg-color);
         border-top: .1rem solid rgba(0, 0, 0, .2);
         box-shadow: 0.5rem 1rem rgba(0, 0, 0, .2);
-         display: none; 
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: .3s ease;
     }
-  .navbar .active{
-    display: block;
-  }
+    .navbar.active{
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    .navbar.active a {
+        display: block;
+        opacity: 1;
+    }
+
+/* Close icon inside mobile navbar (hidden by default, shown when .navbar is active) */
+#close-icon{
+        font-size: 3.2rem;
+        color: var(--text-color);
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        display: none;
+        cursor: pointer;
+}
+.navbar.active #close-icon{
+        display: block;
+}
 
 /* ************togle navbar************************** */
     .navbar a {
-        display: block;
+        display: block !important;
         font-size: 2rem;
         margin: 3rem 0;
+        opacity: 1 !important;
+        visibility: visible !important;
+        color: var(--text-color);
+        text-align: center;
     }
     
     .home {

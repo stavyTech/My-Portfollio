@@ -114,12 +114,12 @@ body {
   
   @media screen and (max-width: 600px) {
     .navbar-links {
-      display: none;
+      display: block;
       width: 100%;
     }
   
     .navbar-links li {
-      float: none;
+      float: block;
     }
   
     .navbar-toggle {
@@ -525,11 +525,26 @@ padding: 2rem 3%;
         background: var(--bg-color);
         border-top: .1rem solid rgba(0, 0, 0, .2);
         box-shadow: 0.5rem 1rem rgba(0, 0, 0, .2);
-         display: none; 
+         display: block; 
+         
     }
-  .navbar .active{
-    display: block;
-  }
+    .navbar.active{
+        display: block;
+    }
+
+/* Close icon inside mobile navbar (hidden by default, shown when .navbar is active) */
+#close-icon{
+        font-size: 3.2rem;
+        color: var(--text-color);
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        display: block;
+        cursor: pointer;
+}
+.navbar.active #close-icon{
+        display: block;
+}
 
 /* ************togle navbar************************** */
     .navbar a {

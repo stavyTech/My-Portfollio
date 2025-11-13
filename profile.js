@@ -12,11 +12,30 @@ document.title ='portfolio';
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 
+// create and append a close icon into the navbar for mobile
+let closeIcon = document.createElement('i');
+closeIcon.className = 'bx bx-x';
+closeIcon.id = 'close-icon';
+// append at end of navbar so it sits inside mobile nav
+if(navbar) navbar.appendChild(closeIcon);
+
 /**********to make the togle bar active************ */
-    menuIcon.onclick = () => {
+menuIcon.onclick = () => {
     menuIcon.classList.toggle('bx-x');
-     navbar.classList.toggle('active');
- };
+    navbar.classList.toggle('active');
+};
+
+// close button behavior (hides the mobile nav)
+if(closeIcon){
+    closeIcon.onclick = () => {
+        if(menuIcon) menuIcon.classList.remove('bx-x');
+        if(navbar){
+            navbar.classList.remove('active');
+            navbar.style.removeProperty('display');
+        }
+        if(navbarLinks) navbarLinks.forEach(a => a.style.removeProperty('display'));
+    };
+}
 
 // scroll section active link//
 let section = document.querySelectorAll('section');
@@ -30,12 +49,12 @@ window.onscroll = () => {
         let id = sec.getAttribute('id');
 
         if(top >= offset && top < offset + height){
-            navlinks.forEach(links => {
-                links.classList.remove('active');
-                document.querySelector('header nav [href=' + id +']').classList.add('active');
-
-            });
-
+            // remove active class from all nav links
+            navlinks.forEach(link => link.classList.remove('active'));
+            // add active to the matching anchor: header nav a[href="#id"]
+            let selector = 'header nav a[href="#' + id + '"]';
+            let activeLink = document.querySelector(selector);
+            if(activeLink) activeLink.classList.add('active');
         };
     });
 
