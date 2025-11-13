@@ -53,7 +53,7 @@ section{
 }
 
 .logo{
-    font-size: 2.5rem;
+    font-size: 1rem;
     color: var(--text-color);
     font-weight: 600;
     cursor:pointer;
@@ -61,16 +61,25 @@ section{
 }
  .navbar{
     font-size: 1.5rem;
-    color: var(--text-color);
-    margin-left: 4rem;
-    transition: .3s;
-} 
+        transform: translateY(-8%);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform .25s ease, opacity .25s ease, visibility .25s ease;
 
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
   }
+    /* hide nav links by default on mobile; show when nav has .active */
+    .navbar a{
+        display: none;
+    }
+    .navbar.active a{
+        display: block;
+        opacity: 1;
+        visibility: visible;
+    }
   
   .navbar {
     background-color: #333;
@@ -513,17 +522,17 @@ padding: 2rem 3%;
 
 /* ************navbar menu-Iconl*************** */
 @media (max-width: 768px){
+    /* scale down the root font size on mobile so rem-based sizes fit better */
+    html{ font-size: 50%; }
     #menu-icon {
          display: block; 
     }
     .navbar{
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        padding: 1rem 3rem;
-        background: var(--bg-color);
-        border-top: .1rem solid rgba(0, 0, 0, .2);
+        font-size: 1.8rem;
+        margin: 2rem 0;
+        color: var(--text-color);
+        text-align: center;
+        display: block; /* this will be overridden by the rule above when nav is not active */
         box-shadow: 0.5rem 1rem rgba(0, 0, 0, .2);
          display: block; 
          
@@ -589,7 +598,7 @@ padding: 2rem 3%;
     }
 
     .portfolio-container {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 }
 
@@ -628,4 +637,44 @@ padding: 2rem 3%;
         margin-top: 2rem;
     }
     
+}
+
+/* Strong mobile overrides (placed at end to override any earlier conflicting rules) */
+@media (max-width: 768px) {
+    html { font-size: 50%; }
+    #menu-icon { display: block; }
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 3rem;
+        background: var(--bg-color);
+        border-top: .1rem solid rgba(0,0,0,.2);
+        box-shadow: 0.5rem 1rem rgba(0,0,0,.2);
+        transform: translateY(-8%);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform .25s ease, opacity .25s ease, visibility .25s ease;
+        z-index: 150;
+    }
+    .navbar.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    /* nav links hidden by default on mobile */
+    .navbar a { display: none; }
+    .navbar.active a {
+        display: block;
+        color: var(--text-color);
+        font-size: 1.8rem;
+        margin: 1.5rem 0;
+        text-align: center;
+    }
+    /* close icon */
+    #close-icon { display: none; position: absolute; top: 1rem; right: 1rem; font-size: 3rem; color: var(--text-color); cursor: pointer; }
+    .navbar.active #close-icon { display: block; }
+    /* portfolio single column on mobile */
+    .portfolio-container { grid-template-columns: 1fr; }
 }

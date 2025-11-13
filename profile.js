@@ -20,20 +20,19 @@ closeIcon.id = 'close-icon';
 if(navbar) navbar.appendChild(closeIcon);
 
 /**********to make the togle bar active************ */
-menuIcon.onclick = () => {
-    menuIcon.classList.toggle('bx-x');
-    navbar.classList.toggle('active');
-};
+if(menuIcon){
+    menuIcon.onclick = () => {
+        if(!navbar) return;
+        menuIcon.classList.toggle('bx-x');
+        navbar.classList.toggle('active');
+    };
+}
 
 // close button behavior (hides the mobile nav)
 if(closeIcon){
     closeIcon.onclick = () => {
         if(menuIcon) menuIcon.classList.remove('bx-x');
-        if(navbar){
-            navbar.classList.remove('active');
-            navbar.style.removeProperty('display');
-        }
-        if(navbarLinks) navbarLinks.forEach(a => a.style.removeProperty('display'));
+        if(navbar) navbar.classList.remove('active');
     };
 }
 
@@ -64,8 +63,8 @@ window.onscroll = () => {
 
 
 // *************************remove toggle icon and navbar link(scroll)*******************************///
-menuIcon.classList.remove('bx-x');
-navbar.classList.remove('active');
+if(menuIcon) menuIcon.classList.remove('bx-x');
+if(navbar) navbar.classList.remove('active');
 
 };
 
