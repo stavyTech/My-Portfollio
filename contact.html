@@ -13,54 +13,47 @@
 </head>
 <body>
    <header class="header">
-    <a href="profile.html" class="logo">portfolio</a>
+    <a href="index.html" class="logo">portfolio</a>
     <!-- font menu-icon -->
      <i class='bx bx-menu' id="menu-icon" ></i>
      <!--  -->
 <!-- nav begin here -->
     <nav class="navbar">
-        <a href="profile.html" class="active">Home</a>
+        <a href="index.html" class="active">Home</a>
         <a href="about-me.html">About</a>
         <a href="service.html">Services</a>
-        <a href="portfolio.html">Portfolio</a>
+        <a href="portfolio.html">Projects</a>
         <a href="contact.html">Contact</a>
 
     </nav>
     <!-- nav end here -->
    </header> 
 
-
-  <!-- contact section design -->
-  <!-- <section class="contact" id="contact">
-    <h2 class="heading">Contact <span>Me</span></h2>
-   <form action="https://formspree.io/f/{form_id}" method="post">
-  <label for="email">Your Email</label>
-  <input name="Email" id="email" type="email">
-  <button type="submit">Submit</button>
-</form> -->
 <section class="contact" id="contact">
     <h2 class="heading">Contact <span>Me</span></h2>
 
     <form action="#">
         <div class="input-box">
-            <input type="text" placeholder="full name">
+            <input type="text" placeholder="name">
             <input type="email" placeholder="E-mail Address">
         </div>
 
         <div class="input-box">
-            <input type="number" placeholder="mobile number">
+            <input type="phone" placeholder="mobile number">
             <input type="text" placeholder="E-mail subject">
 
         </div>
         <textarea name="" id="" cols="30" rows="10" placeholder="your message"></textarea>
-        <input type="submit" value="send message" class="btn">
+        <!-- <input type="submit" value="send message" class="btn"> -->
+         
+    <button onclick="send()" class="btn">Send Message</button>
     </form>
   </section>
 
   <!-- footer section -->
   <footer class="footer">
         <div class="footer-text">
-            <p>Copyright &copy; 2023 by WILLIAMS FAVOUR | alright reserved.</p>
+            <p>Copyright &copy; 2025 by STAVY-TECH | alright reserved.</p>
         </div>
             <div class="footer-iconTop">
                 <a href="#home"><i class="bx bx-up-arrow-alt"></i></a>
@@ -72,5 +65,43 @@
    <script src="https://unpkg.com/scrollreveal"></script>
    <script src="profile.js"></script>
  <!-- <script src="practical.js"></script> -->
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  
+  <script>
+    emailjs.init("vgZYuF3Jig065QDAq"); // Replace with your EmailJS public kEY
+
+
+    document.addEventListener('DOMContentLoaded', function(){
+
+let form = document.getElementById('contact');
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const contactParams = {
+        contact_name: document.getElementById("name").value,
+        contact_email: document.getElementById("email").value,
+        contact_phone: document.getElementById("phone").value,
+        contact_subject: document.getElementById("subject").value,
+        contact_message: document.getElementById("message").value
+      };
+
+      emailjs.send( "service_2uvk2xl", "template_2060kkp", contactParams)
+        .then(() => {
+          alert("✅ your message has been sent successfully! We will get back to You Shortly");
+         
+        }, (err) => {
+          alert("❌ Failed to send message. Please try again.");
+          console.error("EmailJS error:", err);
+        });
+    });
+
+    });
+  
+
+    
+    </script>
+
 </body>
 </html>

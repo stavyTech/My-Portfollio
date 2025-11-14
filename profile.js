@@ -40,6 +40,22 @@ if(closeIcon){
 let section = document.querySelectorAll('section');
 let navlinks = document.querySelectorAll('header nav a');
 
+// Button loader: attach a delegated click handler to show a transient loading state
+document.addEventListener('click', function(e){
+    const btn = e.target.closest('.btn');
+    if(!btn) return;
+
+    // don't interfere with links that navigate away immediately if they have external targets
+    // show loader and remove after 1.5s
+    btn.classList.add('loading');
+    btn.setAttribute('aria-busy', 'true');
+
+    setTimeout(() => {
+        btn.classList.remove('loading');
+        btn.removeAttribute('aria-busy');
+    }, 1500);
+});
+
 window.onscroll = () => {
     section.forEach(sec => {
         let top = window.scrollY;

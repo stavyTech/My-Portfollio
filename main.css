@@ -180,6 +180,24 @@ span{
     box-shadow: none;
 }
 
+/* Button loader styles (mirror of profile.css) */
+.btn{ position: relative; }
+.btn.loading{ pointer-events: none; opacity: 0.9; }
+.btn.loading::after{
+    content: "";
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.25);
+    border-top-color: var(--text-color);
+    animation: loader-spin .8s linear infinite;
+}
+@keyframes loader-spin{ to{ transform: translateY(-50%) rotate(360deg); } }
+
 .about{
     display: flex;
     justify-content: center;
