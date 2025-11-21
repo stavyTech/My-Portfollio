@@ -56,6 +56,52 @@ document.addEventListener('click', function(e){
     }, 1500);
 });
 
+// Stats counters and progress bars animation when visible
+function animateStats() {
+    const stats = document.getElementById('stats');
+    if (!stats) return;
+
+    const counters = stats.querySelectorAll('.counter');
+    const bars = stats.querySelectorAll('.progress-bar');
+
+    counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target') || 0;
+        const duration = 1500;
+        let start = 0;
+        const stepTime = Math.max(Math.floor(duration / target), 20);
+
+        const timer = setInterval(() => {
+            start += Math.ceil(target / (duration / stepTime));
+            if (start >= target) {
+                counter.textContent = target;
+                clearInterval(timer);
+            } else {
+                counter.textContent = start;
+            }
+        }, stepTime);
+    });
+
+    bars.forEach(bar => {
+        const pct = bar.getAttribute('data-progress') || '0';
+        bar.style.width = pct + '%';
+    });
+}
+
+// Use IntersectionObserver to trigger animateStats once when visible
+document.addEventListener('DOMContentLoaded', () => {
+    const stats = document.getElementById('stats');
+    if (!stats) return;
+    const obs = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateStats();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+    obs.observe(stats);
+});
+
 window.onscroll = () => {
     section.forEach(sec => {
         let top = window.scrollY;
@@ -103,4 +149,44 @@ const typed = new Typed('.multiple-text', {
   backSpeed: 100,
   backDelay: 1000,
   loop: true,
+});
+
+// Skills progress bars animation (supports multiple .skills sections)
+function animateSkills(container){
+    if(!container) return;
+    const fills = container.querySelectorAll('.progress-fill');
+    const percEls = container.querySelectorAll('.skill-percent');
+    fills.forEach((fill, idx) => {
+        const pct = parseInt(fill.getAttribute('data-percent')) || 0;
+        fill.style.width = pct + '%';
+
+        const el = percEls[idx];
+        if(!el) return;
+        let current = 0;
+        const duration = 1200;
+        const step = Math.max(Math.floor(duration / Math.max(pct,1)), 15);
+        const timer = setInterval(()=>{
+            current += 1;
+            if(current >= pct){
+                el.textContent = pct + '%';
+                clearInterval(timer);
+            } else {
+                el.textContent = current + '%';
+            }
+        }, step);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+    const skillSections = document.querySelectorAll('.skills');
+    if(!skillSections || skillSections.length === 0) return;
+    const obs = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                animateSkills(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    skillSections.forEach(s => obs.observe(s));
 });
