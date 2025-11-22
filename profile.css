@@ -1196,7 +1196,8 @@ padding: 2rem 3%;
 
 /* New Footer Styles */
 .footer {
-    background: var(--bg-color);
+    /* background: var(--seccond-bg-color); */
+    background-color: red;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -1207,7 +1208,7 @@ padding: 2rem 3%;
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
     padding: 4rem 9%;
-    background: var(--bg-color);
+    background: var(--seccond-bg-color);
 }
 
 .footer-section {
@@ -1333,6 +1334,7 @@ justify-content: space-between;
 }
 
 .footer-bottom {
+    width:100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
