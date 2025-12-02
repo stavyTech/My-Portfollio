@@ -607,9 +607,9 @@ section {
     min-width: auto;
 }
 
-.footer {
+/* .footer {
 padding: 2rem 3%;
-   }
+   } */
 
 }
 
@@ -721,15 +721,17 @@ padding: 2rem 3%;
         width: 90vw;
     }
 
-    .footer {
-        flex-direction: column-reverse;
-    }
-
+    /* .footer {
+        display: flex;
+        /* flex-direction: column; */
+        /* align-items: start;
+    } */
+/* 
     .footer p {
         text-align: center;
         margin-top: 2rem;
     }
-    
+     */ */
 }
 
 /* Strong mobile overrides (placed at end to override any earlier conflicting rules) */
@@ -1004,8 +1006,11 @@ padding: 2rem 3%;
         height: 1rem;
     }
     .cert-content h4, .exp-content h4 {
-        font-size: 1.2rem;
+        font-size: 2.2rem;
     }
+     .cert-content p, .exp-content p{
+        font-size: 1.5rem;
+     }
 }
 
 /* Skills / Progress bars */
@@ -1033,9 +1038,20 @@ padding: 2rem 3%;
     color: var(--text-color);
     font-weight: 600;
 }
-.skill-percent{ font-weight:700; color:var(--main-color); }
-.progress{ height: 12px; background:#23262b; border-radius:999px; overflow:hidden; }
-.progress-fill{ width:0%; height:100%; background: linear-gradient(90deg,#ffb86b,#0ef); transition: width 1200ms ease-out; }
+.skill-percent{ font-weight:700;
+     color:var(--main-color); 
+    }
+.progress{ height: 12px; 
+    background:#23262b;
+     border-radius:999px; 
+     overflow:hidden;
+     }
+.progress-fill{ 
+    width:0%; 
+    height:100%; 
+    background: linear-gradient(90deg,#ffb86b,#0ef);
+     transition: width 1200ms ease-out; 
+    }
 
 @media (max-width:768px){
     .skills-container{ grid-template-columns: 1fr; }
@@ -1131,10 +1147,10 @@ padding: 2rem 3%;
     
     /* Header/Logo */
     .logo {
-        font-size: 1.3rem;
+        font-size: 7.3rem;
     }
     .navbar a {
-        font-size: 1.2rem;
+        font-size: 2.2rem;
         margin-left: 1rem;
     }
     
@@ -1373,11 +1389,21 @@ justify-content: space-between;
 }
 
 /* Footer Mobile Responsiveness */
-@media (max-width: 1024px) {
+ @media (max-width: 1024px) {
     .footer-content {
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
-        padding: 3rem 5%;
+        /* padding: 3rem 5%; */
+        flex-direction: column;
+    }
+.footer-logo {
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+}
+    .footer-logo img {
+        width: 3.5rem;
+        height: 3.5rem;
     }
     
     .footer-bottom {
@@ -1386,92 +1412,93 @@ justify-content: space-between;
         text-align: center;
         padding: 1.5rem 5%;
     }
+
+    .footer-links{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer-social{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer-subscribe{
+        display: flex;
+        flex-direction: column;
+    }
+} 
+
+
+
+/* Responsive image + mobile typography overrides (safe, placed at end) */
+/* Make .img1 responsive and centered for hero and about sections */
+.img1 {
+    max-width: 30rem;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10%;
+    object-fit: cover;
+} 
+
+/* Ensure containers using .home-img/.about-img still behave */
+/* .home .img1,
+.about .img1,
+.home-img img,
+.about-img img {
+    max-width: 28rem;
+    width: 100%;
+    height: auto;
+} */
+
+/* Mobile adjustments: increase readability and allow natural line breaks */
+ /* @media (max-width: 768px) { */
+    /* .img1 { max-width: 70vw; }
+
+    .home-content h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+        line-height: 1.1;
+        margin-bottom: .6rem;
+    }
+    .home-content h3 {
+        font-size: clamp(1.4rem, 5vw, 1.8rem);
+        margin-bottom: .8rem;
+    }
+    .home-content p,
+    .about-content p {
+        font-size: clamp(1rem, 4vw, 1.4rem);
+        line-height: 1.6;
+        word-break: break-word;
+        hyphens: auto;
+        padding: 0 1rem;
+        margin: .8rem 0 1rem;
+    }
+
+    .about-content {
+        padding: 0 1rem;
+    } */
 }
 
-@media (max-width: 768px) {
-    .footer-content {
-        /* grid-template-columns: 1fr; */
-        display: flex;
-        gap: 2rem;
-        padding: 3rem 5%;
-    }
-    
-    .footer-brand,
-    .footer-links,
-    .footer-social,
-    .footer-subscribe {
-        text-align: center;
-    }
-    
-    .footer-section h4 {
-        font-size: 1.6rem;
-    }
-    
-    .footer-links ul li a {
-        font-size: 1.3rem;
-    }
-    
-    .social-links {
-        justify-content: center;
-    }
-    
-    .footer-bottom {
-        display: flex;
-        gap: 1rem;
-        padding: 1.5rem 5%;
-    }
-    
-    .footer-bottom p {
-        font-size: 1.2rem;
-    }
-}
+/* @media (max-width: 500px) {
+    .img1 { max-width: 60vw; }
 
-@media (max-width: 500px) {
-    .footer-content {
-        padding: 2rem 3%;
+    .home-content h1 {
+        font-size: clamp(1.8rem, 10vw, 2.6rem);
     }
-    
-    .footer-logo {
-        justify-content: center;
+    .home-content h3 {
+        font-size: clamp(1.2rem, 6vw, 1.6rem);
     }
-    
-    .footer-logo h3 {
-        font-size: 1.6rem;
+    .home-content p,
+    .about-content p {
+        font-size: clamp(1rem, 4.5vw, 1.2rem);
+        padding: 0 .8rem;
+    } */
+
+    /* Slightly increase spacing so text doesn't touch edges on small screens */
+    /* .home, .about {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
-    
-    .footer-brand p {
-        font-size: 1.2rem;
-    }
-    
-    .footer-section h4 {
-        font-size: 1.4rem;
-    }
-    
-    .footer-links ul li a {
-        font-size: 1.1rem;
-    }
-    
-    .social-links {
-        gap: 1rem;
-    }
-    
-    .social-links a {
-        width: 3rem;
-        height: 3rem;
-        font-size: 1.4rem;
-    }
-    
-    .subscribe-form input,
-    .btn-subscribe {
-        font-size: 1.2rem;
-        padding: 0.8rem;
-    }
-    
-    .footer-bottom {
-        padding: 1rem 3%;
-    }
-    
-    .footer-bottom p {
-        font-size: 1rem;
-    }
-}
+} */
