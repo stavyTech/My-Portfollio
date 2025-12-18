@@ -57,35 +57,47 @@ document.addEventListener('click', function(e){
 });
 
 // Stats counters and progress bars animation when visible
-function animateStats() {
-    const stats = document.getElementById('stats');
-    if (!stats) return;
+// function animateStats() {
+//     const stats = document.getElementById('stats');
+//     if (!stats) return;
 
-    const counters = stats.querySelectorAll('.counter');
-    const bars = stats.querySelectorAll('.progress-bar');
+//     const counters = stats.querySelectorAll('.counter');
+//     const bars = stats.querySelectorAll('.progress-bar');
 
-    counters.forEach(counter => {
-        const target = +counter.getAttribute('data-target') || 0;
-        const duration = 1500;
-        let start = 0;
-        const stepTime = Math.max(Math.floor(duration / target), 20);
+//     counters.forEach(counter => {
+//         const target = +counter.getAttribute('data-target') || 0;
+//         const duration = 1500;
+//         let start = 0;
+//         const stepTime = Math.max(Math.floor(duration / target), 20);
 
-        const timer = setInterval(() => {
-            start += Math.ceil(target / (duration / stepTime));
-            if (start >= target) {
-                counter.textContent = target;
-                clearInterval(timer);
-            } else {
-                counter.textContent = start;
-            }
-        }, stepTime);
+//         const timer = setInterval(() => {
+//             start += Math.ceil(target / (duration / stepTime));
+//             if (start >= target) {
+//                 counter.textContent = target;
+//                 clearInterval(timer);
+//             } else {
+//                 counter.textContent = start;
+//             }
+//         }, stepTime);
+//     });
+
+//     bars.forEach(bar => {
+//         const pct = bar.getAttribute('data-progress') || '0';
+//         bar.style.width = pct + '%';
+//     });
+// }
+
+
+  // Skill bar animation
+  const bars = document.querySelectorAll('.bar-fill');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.style.width = entry.target.dataset.width;
+      }
     });
-
-    bars.forEach(bar => {
-        const pct = bar.getAttribute('data-progress') || '0';
-        bar.style.width = pct + '%';
-    });
-}
+  }, {threshold:0.5});
+  bars.forEach(bar => observer.observe(bar));
 
 // Use IntersectionObserver to trigger animateStats once when visible
 document.addEventListener('DOMContentLoaded', () => {
