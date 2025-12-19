@@ -11,6 +11,10 @@
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <!-- end -->
 
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://cdn.jsdeliver.net/npm/typed.js@2.0.12"></script>
+  <script src="profile.js"></script>
+
 </head>
 <body>
    <header class="header">
@@ -52,14 +56,14 @@ a UI/UX Designer and Front-End Developer
   <a href="img/ORJI PATIENCE WILLIAMS.pdf" download="" class="btn"> Download CV</a>
   <a href="contact.html" class="btn1">Hier Me</a>
     </div>
-     <!-- <div class="home-img" style="border-radius: 80%; border-top: 100%;">  -->
+     <!-- <div class="home-img">  -->
         <img class="img1" src="img/fay.png" alt="">
 
     <!-- </div>  -->
    </section>
    <!-- end home  -->
    <!-- beging of about page -->
-   <section class="about" id="about" style="display: flex; align-items: center; justify-content: center; padding: 10rem 9% 6rem;">
+   <section class="about" id="about">
     <!-- <div class="about-img"> -->
         <img class="img1" src="img/fay.png" alt="">
     <!-- </div> -->
@@ -390,8 +394,40 @@ a UI/UX Designer and Front-End Developer
   </footer>
 
   <!-- javascript -->
-  <script src="https://unpkg.com/scrollreveal"></script>
-  <script src="https://cdn.jsdeliver.net/npm/typed.js@2.0.12"></script>
-  <script src="profile.js"></script>
+
+  <script>
+      emailjs.init('vMPoS5H-LDiU0uqxn'); // Replace with your EmailJS public key
+
+
+    document.addEventListener('DOMContentLoaded', function(){
+
+let form = document.querySelector('form');
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const contactParams = {
+        contact_fullname: document.getElementById("first-name").value,
+      
+        contact_email: document.getElementById("email").value,
+        contact_phone: document.getElementById("phone").value,
+        contact_subject: document.getElementById("subject").value,
+        contact_message: document.getElementById("message").value,
+        // contact_time: document.getElementById("best-time").value
+      };
+
+      emailjs.send( 'service_xlc1q5r', 'template_wqkkv16', contactParams)
+        .then(() => {
+          alert("✅ your message has been sent successfully! We will get back to You Shortly");
+         
+        }, (err) => {
+          alert("❌ Failed to send message. Please try again.");
+          console.error("EmailJS error:", err);
+        });
+    });
+
+    });
+  </script>
+
 </body>
 </html>

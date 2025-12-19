@@ -186,7 +186,7 @@ section{
     align-items: center;
 }
 .home-img{
-    /* background-color: red; */
+    background-color: var(--main-color);
     height: 300px;
 width: 300px;
 }
@@ -196,15 +196,20 @@ width: 300px;
 }
 
 .img1{
+    /* position: absolute; */
     height: 60vh;
 width: 40vh; 
 border-right: 50%;
-/* margin: 100px; */
-    /* border: 50px; */
-     /* border-radius: 50%; */
+margin: 100px; 
+ border: 50px;
+     border-radius: 50%; 
+     /* position: relative; */
+     /* top: -100px; */
+     /* border-top-left-radius: 30%; */
+     /* border-radleft: 30%; */
     /* border-radleft: 30%; */
 }
-/* 
+/* Animation for floating effect */
 @keyframes floatImage {
     0%{
         transform: translate(0);
@@ -216,7 +221,7 @@ border-right: 50%;
     100%{
         transform: translate(0);
     }
-} */
+} 
 
 .home-content h3{
     font-size: 3.2rem;
@@ -318,7 +323,7 @@ span{
 
 .about{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 2rem;
     background: var(--seccond-bg-color);
@@ -329,9 +334,13 @@ span{
     text-align: left;
 }
 
+.about-img{
+    background-color: red;
+}
+
 .about-img img{
-    width: 50vw;
-    /* height: 20px; */
+    width: 20vw;
+    height: auto;
 }
 
 .heading{
@@ -344,9 +353,9 @@ span{
     line-height: 1.2;
 }
 
-/* .about-content h3 {
+ .about-content h3 {
  font-size: 2.6rem;
-} */
+} 
 
 .about-content p {
     font-size: 1.6rem;
@@ -578,6 +587,7 @@ section {
 
 .service {
     padding-bottom: 17rem;
+
 }
 
 .portfolio {
@@ -755,7 +765,7 @@ padding: 2rem 3%;
 
  /* Skills */
 
- .skills-section{
+  .skills-section{
     background:  var(--seccond-bg-color);
     padding: 10rem 9% 6rem;
  }
@@ -767,12 +777,13 @@ padding: 2rem 3%;
         border-radius:10px;
         overflow:hidden;
         margin-top:6px;
-    }
-    .bar-fill {
-      height: 25px;width:100;
+    } 
+     .bar-fill { 
+      height: 25px;
+      width:100;
       background:linear-gradient(135deg,#38bdf8,#22d3ee);
       transition:width 1.5s ease;
-    }
+    } 
 
       .skill-percent1{
         font-size:1.6rem;
@@ -826,6 +837,26 @@ padding: 2rem 3%;
     .stat .counter {
         font-size: 1.75rem;
     }
+
+    .skill-percent1, .skill-percent2, .skill-percent3, .skill-percent4 {
+        position: relative;
+        left: auto;
+    }
+    .skill-percent1{
+        left: 260px;
+    }
+
+      .skill-percent2{
+        left: 249px;
+      }
+    
+    
+      .skill-percent3{
+        left: 220px;
+      }
+        .skill-percent4{
+        left: 180px;
+      }
 }
 
 /* Certification and Experience Section */
@@ -1025,7 +1056,7 @@ padding: 2rem 3%;
 }
 
 /* Skills / Progress bars */
-.skills {
+ .skills {
     padding: 4rem 9% 6rem;
     background: var(--bg-color);
 }
@@ -1057,12 +1088,12 @@ padding: 2rem 3%;
      border-radius:999px; 
      overflow:hidden;
      }
-.progress-fill{ 
+      .progress-fill{  
     width:0%; 
     height:100%; 
     background: linear-gradient(90deg,#ffb86b,#0ef);
      transition: width 1200ms ease-out; 
-    }
+    } 
 
 @media (max-width:768px){
     .skills-container{ grid-template-columns: 1fr; }
@@ -1259,14 +1290,14 @@ padding: 2rem 3%;
 @media (max-width: 768px) {
     html { font-size: 50%; }
     
-    section {
+     section {
         padding: 5rem 3% 2rem;
-    }
+    } 
     
     /* Home/Hero section */
     .home {
         flex-direction: column-reverse;
-        gap: 1.5rem;
+        gap: 2rem;
     }
     .home-content h1 {
         font-size: 2.8rem;
@@ -1286,13 +1317,41 @@ padding: 2rem 3%;
         position: absolute;
         top: 90;
     }
+.img1{
+       height: 60vh;
+    width: 40vh; 
+    /* borde/r-right: 50%; */
+     /* margin: 100px;  */
+     /* border: 50px; */
+     border-radius: 100%; 
+      @keyframes floatImage {
+    0%{
+        transform: translate(0);
+    }
+    50%{
+        transform: translate(-22.4rem);
+    }
 
+    100%{
+        transform: translate(0);
+    }
+}
     .about-img {
        border-radius: 50%;
        border: 1px solide aqua;
     }
+
+   
+} 
+
     
     /* About section */
+
+    .about {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
     .about-content h2 {
         font-size: 2rem;
     }
@@ -1327,7 +1386,7 @@ padding: 2rem 3%;
         font-size: 1.6rem;
     }
     .service-box p {
-        font-size: 1rem;
+        font-size: 2rem;
     }
     .service-box i {
         font-size: 3rem;
@@ -1357,10 +1416,10 @@ padding: 2rem 3%;
     }
     .contact form .input-box input {
         width: 100%;
-        font-size: 3rem;
+        font-size: 2rem;
     }
     .contact form textarea {
-        font-size: 3rem;
+        font-size: 2rem;
     
     
     /* Header/Logo */
@@ -1695,23 +1754,23 @@ justify-content: space-between;
     height: auto;
     display: block;
     margin: 0 auto;
-    border-radius: 10%;
+    border-radius: 50%;
     object-fit: cover;
 } 
 
 /* Ensure containers using .home-img/.about-img still behave */
-/* .home .img1,
+.home .img1,
 .about .img1,
 .home-img img,
 .about-img img {
     max-width: 28rem;
     width: 100%;
     height: auto;
-} */
+} 
 
 /* Mobile adjustments: increase readability and allow natural line breaks */
  /* @media (max-width: 768px) { */
-    /* .img1 { max-width: 70vw; }
+.img1 { max-width: 70vw; }
 
     .home-content h1 {
         font-size: clamp(2rem, 8vw, 3rem);
@@ -1734,10 +1793,10 @@ justify-content: space-between;
 
     .about-content {
         padding: 0 1rem;
-    } */
-/* } */
+    } 
+} 
 
-/* @media (max-width: 500px) {
+@media (max-width: 500px) {
     .img1 { max-width: 60vw; }
 
     .home-content h1 {
@@ -1753,8 +1812,8 @@ justify-content: space-between;
     } */
 
     /* Slightly increase spacing so text doesn't touch edges on small screens */
-     /* .home, .about { */
-        /* padding-left: 1rem; */
-        /* padding-right: 1rem; */
-    /* } */
+      .home, .about { 
+        padding-left: 1rem; 
+         padding-right: 1rem; 
+     }
  }
